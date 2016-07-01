@@ -81,13 +81,3 @@ print('%-70s %9s' % ('-' * 70, '-' * 9))
 print('TOTALS: Number of Papers =', len(papers), 'and Citations =', total)
 
 print()
-
-#print(rows[0])	
-#
-['AMPds: A public dataset for load disaggregation and eco-feedback research', 'S Makonin, F Popowich, L Bartram, B Gill, IV Bajic', 'Electrical Power &amp; Energy Conference (EPEC), 2013 IEEE, 1-6', ', 2013', '78', '2013']
-#
-#
-#<td class="gsc_a_t"><a href="/citations?view_op=view_citation&amp;hl=en&amp;oe=ASCII&amp;user=cneuo_UAAAAJ&amp;pagesize=100&amp;citation_for_view=cneuo_UAAAAJ:zYLM7Y9cAGgC" class="gsc_a_at">AMPds: A public dataset for load disaggregation and eco-feedback research</a><div class="gs_gray">S Makonin, F Popowich, L Bartram, B Gill, IV Bajic</div><div class="gs_gray">Electrical Power &amp; Energy Conference (EPEC), 2013 IEEE, 1-6<span class="gs_oph">, 2013</span></div></td><td class="gsc_a_c"><a href="https://scholar.google.ca/scholar?oi=bibs&amp;hl=en&amp;oe=ASCII&amp;cites=9977726888743581483" class="gsc_a_ac">78</a></td><td class="gsc_a_y"><span class="gsc_a_h">2013</span></td>
-#
-
-
