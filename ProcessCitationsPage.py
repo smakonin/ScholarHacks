@@ -64,6 +64,8 @@ for paper in papers:
 
 	id = ''
 	name = paper[0]
+	if len(name) > 70:
+		name = name[:67] + '...'
 
 	if len(paper) < 6:
 		count = 0
