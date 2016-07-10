@@ -36,7 +36,7 @@ keys = ['Citations',
 		'i10-index']
 
 for key in keys:
-	print('%-9s = %5d' % (key, get_number(html, key)))
+	print('%-9s = %7s' % (key, format(get_number(html, key), ',d')))
 
 print()
 
@@ -54,15 +54,20 @@ papers_html = papers_html.replace('<tr class="gsc_a_tr">', '')
 papers_html = papers_html.replace('</tr>', '\n')
 papers = papers_html[:-1].split('\n')
 
-print('%-70s %9s' % ('Paper Title', 'Citations'))
-print('%-70s %9s' % ('-' * 70, '-' * 9))
+print_templ = '%-25s %-70s %9s'
+
+print(print_templ % ('Scholar ID', 'Paper Title', 'Citations'))
+print(print_templ % ('-' * 25, '-' * 70, '-' * 9))
 total = 0
 for paper in papers:
+	key = 'citation_for_view='
+	start = paper.find(key) + len('citation_for_view=')
+	end = start + paper[start:].find('"')
+	id = paper[start:end]
+		
 	paper = [v for v in re.sub('<[^<]+?>', '|', paper).split('|') if v]
 	if len(paper) == 0:
 		continue
-
-	id = ''
 	name = paper[0]
 	if len(name) > 70:
 		name = name[:67] + '...'
@@ -75,11 +80,11 @@ for paper in papers:
 		except:
 			count = 0
 
-	print('%-70s %9d' % (name[:70], count))
+	print(print_templ % (id, name[:70], format(count, ',d')))
 	total += count
 
-print('%-70s %9s' % ('-' * 70, '-' * 9))
+print(print_templ % ('-' * 25, '-' * 70, '-' * 9))
 
-print('TOTALS: Number of Papers =', len(papers), 'and Citations =', total)
+print('TOTALS: Number of Papers =', len(papers), 'and Citations =', format(total, ',d'))
 
 print()
