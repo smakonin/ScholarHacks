@@ -95,6 +95,6 @@ for paper in papers:
 
 print(print_templ % ('-' * title_len, '-' * 9))
 
-#print('TOTALS: Number of Papers =', len(papers), 'and Citations =', format(total, ',d'))
+print('TOTALS: Number of Papers =', len(papers), 'and Citations =', format(total, ',d'))
 
 print()
