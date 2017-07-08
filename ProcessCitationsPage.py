@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.5
 #
 # Process the stats on my Google Scholar Citations/Profile Page
 # Copyright (C) 2016 Stephen Makonin. All Right Reserved.
@@ -9,12 +9,12 @@ from html.parser import HTMLParser
 
 scholar_url = 'https://scholar.google.ca/citations?user=cneuo_UAAAAJ&hl=en&pagesize=999'
 
-journals = [['Transactions on Smart Grid'             , 'TSG'    , 3.190],
-            ['Pervasive Computing'                    , 'PvC'    , 1.836],
-            ['Energy Efficiency'                      , 'ENEF'   , 1.183],
+journals = [['Transactions on Smart Grid'             , 'TSG'    , 6.645],
+            ['Pervasive Computing'                    , 'PvC'    , 3.250],
+            ['Energy Efficiency'                      , 'ENEF'   , 1.186],
             ['Journal on Computing'                   , 'JoC'    , 'tbd'],
-            ['Scientific Data'                        , 'SData'  , 'tbd'],
-            ['Transactions on Circuits and Systems II', 'TCAS-II', 1.136]]
+            ['Scientific Data'                        , 'SData'  , 4.836],
+            ['Transactions on Circuits and Systems II', 'TCAS-II', 1.660]]
 
 def get_chunk(html, pre, post):
     start = html.find(pre) + len(pre)
