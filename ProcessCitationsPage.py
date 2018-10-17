@@ -9,12 +9,13 @@ from html.parser import HTMLParser
 
 scholar_url = 'https://scholar.google.ca/citations?user=cneuo_UAAAAJ&hl=en&pagesize=999'
 
-journals = [['Transactions on Smart Grid'             , 'TSG'    , 6.645],
-            ['Pervasive Computing'                    , 'PvC'    , 3.250],
-            ['Energy Efficiency'                      , 'ENEF'   , 1.186],
+journals = [['Transactions on Smart Grid'             , 'TSG'    , 7.364],
+            ['Pervasive Computing'                    , 'PvC'    , 3.022],
+            ['Energy Efficiency'                      , 'ENEF'   , 1.634],
             ['Journal on Computing'                   , 'JoC'    , 'tbd'],
             ['Scientific Data'                        , 'SData'  , 4.836],
-            ['Transactions on Circuits and Systems II', 'TCAS-II', 1.660]]
+            ['Transactions on Circuits and Systems II', 'TCAS-II', 2.450],
+            ['MDPI Data'                              , 'DATA'   , 'tbd']]
 
 def get_chunk(html, pre, post):
     start = html.find(pre) + len(pre)
