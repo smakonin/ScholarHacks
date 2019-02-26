@@ -1,10 +1,10 @@
-#!/usr/bin/env python3.5
+#!/usr/bin/env python3
 #
 # Process the stats on my Google Scholar Citations/Profile Page
 # Copyright (C) 2016 Stephen Makonin. All Right Reserved.
 #
 
-import urllib.request, re, datetime
+import urllib.request, re, datetime, html as HTML
 from html.parser import HTMLParser
 
 scholar_url = 'https://scholar.google.ca/citations?user=cneuo_UAAAAJ&hl=en&pagesize=999'
@@ -14,6 +14,8 @@ journals = [['Transactions on Smart Grid'             , 'TSG'    , 7.364],
             ['Energy Efficiency'                      , 'ENEF'   , 1.634],
             ['Journal on Computing'                   , 'JoC'    , 'tbd'],
             ['Scientific Data'                        , 'SData'  , 4.836],
+            ['Applied Energy'                         , 'APEN'   , 7.900],
+            ['Data in Brief'                          , 'DIB'    , 'tbd'],
             ['Transactions on Circuits and Systems II', 'TCAS-II', 2.450],
             ['MDPI Data'                              , 'DATA'   , 'tbd']]
 
@@ -32,11 +34,11 @@ def get_number(html, keyword, pre='<tr>', post='</tr>'):
     return num
 
 def get_if(text):
-    global total_if
+    global impact_tl
     for journal in journals:
         if text.find(journal[0]) > -1:
             if journal[2] != 'tbd':
-                total_if += journal[2]
+                impact_tl += journal[2]
                 return '%10.03f' % (journal[2])
             else:
                 return '%10s' % (journal[2])
@@ -82,8 +84,10 @@ print_templ = '%-' + str(title_len) + 's %9s %-10s'
 
 print(print_templ % ('Paper Title', 'Citations', 'Journal IF'))
 print(print_templ % ('-' * title_len, '-' * 9, '-' * 10))
-total = 0
-total_if = 0
+conf_citations = 0
+journal_papers = 0
+journal_citations = 0
+impact_tl = 0
 for paper in papers:
     key = 'citation_for_view='
     start = paper.find(key) + len('citation_for_view=')
@@ -94,7 +98,7 @@ for paper in papers:
     if len(paper) == 0:
         continue
 
-    name = hparser.unescape(paper[0])
+    name = HTML.unescape(paper[0])
     if len(name) > title_len:
         name = name[:(title_len-3)] + '...'
 
@@ -106,17 +110,32 @@ for paper in papers:
         except:
             count = 0
 
-    if count == 0:
-        continue
-
     impact = get_if(paper[2])
 
+    if count == 0 and impact == '':
+        continue
+
+    if impact != '':
+        journal_papers += 1
+        journal_citations += count
+    else:
+        conf_citations += count
+
     print(print_templ % (name[:title_len], format(count, ',d'), impact))
-    total += count
 
 print(print_templ % ('-' * title_len, '-' * 9, '-' * 10))
 
-print(print_templ % ('Total Number of Papers = ' + str(len(papers)), format(total, ',d'), format(total_if, '10.3f')))
-#print('TOTALS: Number of Papers =', len(papers), ' Citations =', format(total, ',d'), 'and Impact Factor =', total_if)
+conf_papers = len(papers) - journal_papers
 
+print(print_templ % ('Peer-Reviewed Conferences:                                  ' + format(conf_papers, '3d') + ' papers', format(conf_citations, ',d'), format(0, '10.3f')))
+print(print_templ % ('Peer-Reviewed Journals:                                     ' + format(journal_papers, '3d') + ' papers', format(journal_citations, ',d'), format(impact_tl, '10.3f')))
+print(print_templ % ('                                                            ----------', '---------', '----------'))
+print(print_templ % ('Grand Totals:                                               ' + format(conf_papers+journal_papers, '3d') + ' papers', format(conf_citations+journal_citations, ',d'), format(impact_tl, '10.3f')))
+print(print_templ % ('                                                            ==========', '=========', '==========')) 
+
+
+# print(print_templ % ('Total Number of Papers = ' + str(len(papers)), format(conf_citations, ',d'), format(impact_tl, '10.3f')))
+# #print('TOTALS: Number of Papers =', len(papers), ' Citations =', format(conf_citations, ',d'), 'and Impact Factor =', impact_tl)
+# print(print_templ % ('Total Peer-Reviewed Conference Papers = ' + str(len(papers)), format(conf_citations, ',d'), format(impact_tl, '10.3f')))
+# print(print_templ % ('Total Peer-Reviewed Journal Papers    = ' + str(len(papers)), format(journal_papers, ',d'), format(impact_tl, '10.3f')))
 print()
