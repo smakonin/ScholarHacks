@@ -7,7 +7,9 @@
 import urllib.request, re, datetime, html as HTML
 from html.parser import HTMLParser
 
+
 scholar_url = 'https://scholar.google.ca/citations?user=cneuo_UAAAAJ&hl=en&pagesize=999'
+
 
 journals = [['Transactions on Smart Grid'             , 'TSG'    , 7.364],
             ['Pervasive Computing'                    , 'PvC'    , 3.022],
@@ -15,9 +17,13 @@ journals = [['Transactions on Smart Grid'             , 'TSG'    , 7.364],
             ['Journal on Computing'                   , 'JoC'    , 'tbd'],
             ['Scientific Data'                        , 'SData'  , 4.836],
             ['Applied Energy'                         , 'APEN'   , 7.900],
-            ['Data in Brief'                          , 'DIB'    , 'tbd'],
+            ['Data in Brief'                          , 'DIB'    , 1.430],
             ['Transactions on Circuits and Systems II', 'TCAS-II', 2.450],
             ['MDPI Data'                              , 'DATA'   , 'tbd']]
+
+books =    ['Sams Publishing',
+            'Woodhead Publishing']
+
 
 def get_chunk(html, pre, post):
     start = html.find(pre) + len(pre)
@@ -34,16 +40,24 @@ def get_number(html, keyword, pre='<tr>', post='</tr>'):
     return num
 
 def get_if(text):
-    global impact_tl
+    global impact_total
     for journal in journals:
         if text.find(journal[0]) > -1:
             if journal[2] != 'tbd':
-                impact_tl += journal[2]
+                impact_total += journal[2]
                 return '%10.03f' % (journal[2])
             else:
                 return '%10s' % (journal[2])
 
     return ''
+
+def is_book(text):
+    for book in books:
+        if text.find(book) > -1:
+            return True
+
+    return False
+
 
 response = urllib.request.urlopen(scholar_url)
 html = response.read().decode(response.headers.get_content_charset())
@@ -87,7 +101,9 @@ print(print_templ % ('-' * title_len, '-' * 9, '-' * 10))
 conf_citations = 0
 journal_papers = 0
 journal_citations = 0
-impact_tl = 0
+book_citations = 0
+impact_total = 0
+book_count = 0
 for paper in papers:
     key = 'citation_for_view='
     start = paper.find(key) + len('citation_for_view=')
@@ -112,12 +128,17 @@ for paper in papers:
 
     impact = get_if(paper[2])
 
-    if count == 0 and impact == '':
+    a_book = is_book(paper[2])
+
+    if count == 0 and impact == '' and not a_book:
         continue
 
     if impact != '':
         journal_papers += 1
         journal_citations += count
+    elif a_book:
+        book_count += 1
+        book_citations += count
     else:
         conf_citations += count
 
@@ -125,14 +146,15 @@ for paper in papers:
 
 print(print_templ % ('-' * title_len, '-' * 9, '-' * 10))
 
-conf_papers = len(papers) - journal_papers
-total_papers = conf_papers + journal_papers
-total_citations = conf_citations + journal_citations
+conf_papers = len(papers) - (journal_papers + book_count)
+total_papers = conf_papers + journal_papers + book_count
+total_citations = conf_citations + journal_citations + book_citations
 
-print(print_templ % ('Peer-Reviewed Conferences:                                  ' + format(conf_papers, '3d') + ' papers', format(conf_citations, ',d'), format(0, '10.3f')))
-print(print_templ % ('Peer-Reviewed Journals:                                     ' + format(journal_papers, '3d') + ' papers', format(journal_citations, ',d'), format(impact_tl, '10.3f')))
+print(print_templ % ('Peer-Reviewed Conferences:                                  ' + format(conf_papers, '3d') + ' papers', format(conf_citations, ',d'), ''))
+print(print_templ % ('Peer-Reviewed Journals:                                     ' + format(journal_papers, '3d') + ' papers', format(journal_citations, ',d'), format(impact_total, '10.3f')))
+print(print_templ % ('Books Co-authored/Co-edited:                                ' + format(book_count, '3d') + ' books', format(book_citations, ',d'), ''))
 print(print_templ % ((' ' * (title_len - 10)) + ('-' * 10), '-' * 9, '-' * 10))
-print(print_templ % ('Grand Totals:                                               ' + format(total_papers, '3d') + ' papers', format(total_citations, ',d'), format(impact_tl, '10.3f')))
+print(print_templ % ('Grand Totals:                                               ' + format(total_papers, '3d') + ' papers', format(total_citations, ',d'), format(impact_total, '10.3f')))
 print(print_templ % ((' ' * (title_len - 10)) + ('=' * 10), '=' * 9, '=' * 10))
 
 print()
