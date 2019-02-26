@@ -126,16 +126,13 @@ for paper in papers:
 print(print_templ % ('-' * title_len, '-' * 9, '-' * 10))
 
 conf_papers = len(papers) - journal_papers
+total_papers = conf_papers + journal_papers
+total_citations = conf_citations + journal_citations
 
 print(print_templ % ('Peer-Reviewed Conferences:                                  ' + format(conf_papers, '3d') + ' papers', format(conf_citations, ',d'), format(0, '10.3f')))
 print(print_templ % ('Peer-Reviewed Journals:                                     ' + format(journal_papers, '3d') + ' papers', format(journal_citations, ',d'), format(impact_tl, '10.3f')))
-print(print_templ % ('                                                            ----------', '---------', '----------'))
-print(print_templ % ('Grand Totals:                                               ' + format(conf_papers+journal_papers, '3d') + ' papers', format(conf_citations+journal_citations, ',d'), format(impact_tl, '10.3f')))
-print(print_templ % ('                                                            ==========', '=========', '==========')) 
+print(print_templ % ((' ' * (title_len - 10)) + ('-' * 10), '-' * 9, '-' * 10))
+print(print_templ % ('Grand Totals:                                               ' + format(total_papers, '3d') + ' papers', format(total_citations, ',d'), format(impact_tl, '10.3f')))
+print(print_templ % ((' ' * (title_len - 10)) + ('=' * 10), '=' * 9, '=' * 10))
 
-
-# print(print_templ % ('Total Number of Papers = ' + str(len(papers)), format(conf_citations, ',d'), format(impact_tl, '10.3f')))
-# #print('TOTALS: Number of Papers =', len(papers), ' Citations =', format(conf_citations, ',d'), 'and Impact Factor =', impact_tl)
-# print(print_templ % ('Total Peer-Reviewed Conference Papers = ' + str(len(papers)), format(conf_citations, ',d'), format(impact_tl, '10.3f')))
-# print(print_templ % ('Total Peer-Reviewed Journal Papers    = ' + str(len(papers)), format(journal_papers, ',d'), format(impact_tl, '10.3f')))
 print()
