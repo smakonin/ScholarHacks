@@ -120,5 +120,6 @@ def get_scholar_data(id):
     return (agg, data)
 
 if __name__ == "__main__":
-    for data in get_scholar_data('cneuo_UAAAAJ'):
-        pprint(asdict(data), indent=4, width=160)
+    (agg, papers) = get_scholar_data('cneuo_UAAAAJ')
+    for paper in papers:
+        pprint(asdict(paper), indent=4, width=160)
