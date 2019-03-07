@@ -16,8 +16,8 @@ print()
 
 (agg, papers) = get_scholar_data('cneuo_UAAAAJ')
 
-for line in agg:
-    print(line)
+for key in agg:
+    print('%-9s = %7s' % (key, format(agg[key], ',d')))
 print()
 
 title_len = 70

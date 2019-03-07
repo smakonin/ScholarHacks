@@ -3,7 +3,7 @@
 #
 
 
-import urllib.request, re, datetime, html as HTML
+import urllib.request, re, datetime, json, html as HTML
 from html.parser import HTMLParser
 from pprint import pprint
 from dataclasses import dataclass, asdict, astuple
@@ -91,8 +91,9 @@ def get_scholar_data(id):
     papers = papers_html[:-1].split('\n')
     hparser = HTMLParser()
 
+    agg = {}
     for key in keys:
-        agg.append('%-9s = %7s' % (key, format(get_number(html, key), ',d')))
+        agg[key] = int(get_number(html, key))
 
     for paper in papers:
         key = 'citation_for_view='
@@ -119,7 +120,29 @@ def get_scholar_data(id):
         data.append(PaperData(id, name, count, (impact == '' and not a_book), (impact != ''), a_book, impact))
     return (agg, data)
 
-if __name__ == "__main__":
-    (agg, papers) = get_scholar_data('cneuo_UAAAAJ')
+def get_scholar_json(id):
+    (agg, papers) = get_scholar_data(id)
+
+    dict = {'agg': {}, 'papers': {}}
+
+    for key in agg:
+        dict['agg'][key] = agg[key]
+
     for paper in papers:
-        pprint(asdict(paper), indent=4, width=160)
+        dict['papers'][paper.id] = asdict(paper)
+
+    json_text = json.dumps(dict, sort_keys=True, indent=4)
+    json_text = json_text.replace('"agg"', 'agg')
+    json_text = json_text.replace('"papers"', 'papers')
+    json_text = json_text.replace('"citations"', 'citations')
+    json_text = json_text.replace('"id"', 'id')
+    json_text = json_text.replace('"impact_factor"', 'impact_factor')
+    json_text = json_text.replace('"is_book"', 'is_book')
+    json_text = json_text.replace('"is_conference"', 'is_conference')
+    json_text = json_text.replace('"is_journal"', 'is_journal')
+    json_text = json_text.replace('"title"', 'title')
+    return 'var sdata = ' + json_text
+
+
+if __name__ == "__main__":
+    print(get_scholar_json('cneuo_UAAAAJ'))
