@@ -1,3 +1,4 @@
+cd /home/pi/ScholarHacks
 cd ../smakonin.github.io
 git pull
 cd ../ScholarHacks
