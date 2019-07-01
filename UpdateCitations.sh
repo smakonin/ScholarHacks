@@ -10,5 +10,7 @@ cd ../smakonin.github.io/
 git add .
 git status
 git commit -m 'upd citation json'
-git push > /dev/null
+git push
+#git push > /dev/null
+head scholar.js
 cd ../ScholarHacks/
