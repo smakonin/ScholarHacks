@@ -9,16 +9,16 @@ from pprint import pprint
 from dataclasses import dataclass, asdict, astuple
 
 
-journals = [['Transactions on Smart Grid'             , 'TSG'    , 7.364],
-            ['Pervasive Computing'                    , 'PvC'    , 3.022],
-            ['Energy Efficiency'                      , 'ENEF'   , 1.634],
-            ['Journal on Computing'                   , 'JoC'    , 'tbd'],
-            ['Scientific Data'                        , 'SData'  , 4.836],
-            ['Applied Energy'                         , 'APEN'   , 7.900],
-            ['Data in Brief'                          , 'DIB'    , 1.430],
-            ['Transactions on Circuits and Systems II', 'TCAS-II', 2.450],
-            ['MDPI Data'                              , 'DATA'   , 'tbd'],
-            ['IEEE Access'                            , 'Access' , 3.557]]
+journals = [['Transactions on Smart Grid'             , 'TSG'    , 10.486],
+            ['Pervasive Computing'                    , 'PvC'    ,  3.022],
+            ['Energy Efficiency'                      , 'ENEF'   ,  1.961],
+            ['Journal on Computing'                   , 'JoC'    ,  'tbd'],
+            ['Scientific Data'                        , 'SData'  ,  6.776],
+            ['Applied Energy'                         , 'APEN'   ,  8.426],
+            ['Data in Brief'                          , 'DIB'    ,  1.430],
+            ['Transactions on Circuits and Systems II', 'TCAS-II',  3.250],
+            ['MDPI Data'                              , 'DATA'   ,  'tbd'],
+            ['IEEE Access'                            , 'Access' ,  4.098]]
 
 books =    ['Sams Publishing',
             'Woodhead Publishing']
