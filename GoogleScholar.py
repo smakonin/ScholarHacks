@@ -19,6 +19,8 @@ journals = [['Transactions on Smart Grid'             , 'TSG'    , 10.486],
             ['Transactions on Circuits and Systems II', 'TCAS-II',  3.250],
             ['MDPI Data'                              , 'DATA'   ,  'tbd'],
             ['IEEE Access'                            , 'Access' ,  4.098]]
+            ['Transactions on Power Systems'          , 'TPWRS'  ,  6.047],
+            ['Transactions on Sustainable Energy'     , 'TSTE'   ,  7.440]]
 
 books =    ['Sams Publishing',
             'Woodhead Publishing']
