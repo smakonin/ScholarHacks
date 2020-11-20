@@ -20,7 +20,8 @@ journals = [['Transactions on Smart Grid'             , 'TSG'    , 10.486],
             ['MDPI Data'                              , 'DATA'   ,  'tbd'],
             ['IEEE Access'                            , 'Access' ,  4.098],
             ['Transactions on Power Systems'          , 'TPWRS'  ,  6.047],
-            ['Transactions on Sustainable Energy'     , 'TSTE'   ,  7.440]]
+            ['Transactions on Sustainable Energy'     , 'TSTE'   ,  7.440],
+            ['Energy Informatics'                     , 'EINF'   ,  'tbd']]
 
 books =    ['Sams Publishing',
             'Woodhead Publishing']
