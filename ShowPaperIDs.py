@@ -16,6 +16,10 @@ print()
 
 (agg, papers) = get_scholar_data('cneuo_UAAAAJ')
 
+f = open('./homepage.html', mode='r')
+homepage = f.read()
+f.close()
+
 title_len = 80
 id_len = 30
 print_templ = '%-' + str(id_len) + 's ' + '%-' + str(title_len) + 's '
@@ -28,7 +32,11 @@ for paper in papers:
     if len(name) > title_len:
         name = name[:(title_len-3)] + '...'
 
-    print(print_templ % (paper.id[:id_len], name[:title_len]))
+    is_new = '     '
+    if homepage.find(paper.id) < 0:
+        is_new = '    *'
+
+    print(print_templ % (paper.id[:id_len - len(is_new)] + is_new, name[:title_len]))
 
 print(print_templ % ( '-' * id_len, '-' * title_len))
 
