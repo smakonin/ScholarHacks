@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #
 # Process the stats on my Google Scholar Citations/Profile Page
-# Copyright (C) 2016 Stephen Makonin. All Right Reserved.
+# Copyright (C) 2016-2020 Stephen Makonin. All Right Reserved.
 #
 
 

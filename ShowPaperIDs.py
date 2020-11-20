@@ -8,12 +8,6 @@
 import datetime
 from GoogleScholar import get_scholar_data
 
-
-print()
-print('Papers and their Google Scholar IDs:', datetime.datetime.now())
-
-print()
-
 (agg, papers) = get_scholar_data('cneuo_UAAAAJ')
 
 f = open('./homepage.html', mode='r')
@@ -22,22 +16,38 @@ f.close()
 
 title_len = 80
 id_len = 30
-print_templ = '%-' + str(id_len) + 's ' + '%-' + str(title_len) + 's '
+print_templ = '%-' + str(id_len) + 's ' + '%-' + str(title_len) + 's %9s'
 
-print(print_templ % ('Google Scholar ID', 'Paper Title'))
-print(print_templ % ( '-' * id_len, '-' * title_len))
+
+old_papers = ''
+new_papers = ''
 
 for paper in papers:
     name = paper.title
     if len(name) > title_len:
         name = name[:(title_len-3)] + '...'
 
-    is_new = '     '
     if homepage.find(paper.id) < 0:
-        is_new = '    *'
+        new_papers += print_templ % (paper.id[:id_len], name[:title_len], format(paper.citations, ',d')) + '\n'
+    else:
+        old_papers += print_templ % (paper.id[:id_len], name[:title_len], format(paper.citations, ',d')) + '\n'
 
-    print(print_templ % (paper.id[:id_len - len(is_new)] + is_new, name[:title_len]))
 
-print(print_templ % ( '-' * id_len, '-' * title_len))
+print()
+print('Papers and their Google Scholar IDs:', datetime.datetime.now())
+print()
+print('IDs in Homepage:')
+print(print_templ % ( '-' * id_len, '-' * title_len, '-' * 9))
+print(print_templ % ('Google Scholar ID', 'Paper Title', 'Citations'))
+print(print_templ % ( '-' * id_len, '-' * title_len, '-' * 9))
+print(old_papers[:-1])
+print(print_templ % ( '-' * id_len, '-' * title_len, '-' * 9))
+print()
+print('IDs *NOT* in Homepage:')
+print(print_templ % ( '-' * id_len, '-' * title_len, '-' * 9))
+print(print_templ % ('Google Scholar ID', 'Paper Title', 'Citations'))
+print(print_templ % ( '-' * id_len, '-' * title_len, '-' * 9))
+print(new_papers[:-1])
+print(print_templ % ( '-' * id_len, '-' * title_len, '-' * 9))
 
 print()
