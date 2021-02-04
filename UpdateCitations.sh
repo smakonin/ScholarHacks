@@ -1,28 +1,30 @@
-
 head ~/SourceCode/smakonin.github.io/scholar.js
 
-#cd /home/pi/ScholarHacks/
-cd ~/SourceCode/ScholarHacks
+echo "*** SYNC WITH GITHUB:"
+cd ~/SourceCode/smakonin.github.io/
+git pull
 
 echo "*** INGESTING GOOGLE SCHOLAR DATA:"
-cd ../smakonin.github.io/
-git pull
-cd ../ScholarHacks/
+cd ~/SourceCode/ScholarHacks/
 ./GenerateCitationJSON.py
-cd ../smakonin.github.io/
+mv -v scholar.js ~/SourceCode/smakonin.github.io/
 
 echo "*** UPDATE WITH NEW CV:"
-cp -v ~/Documents/Job\ Docs/SMakonin_CV.pdf ./doc/
+cd ~/SourceCode/ScholarHacks/
+cp -v SMakonin_CV.pdf ~/SourceCode/smakonin.github.io/doc/
 
-#echo "*** BUILD NEW SITEMAP:"
-#python3 ~/SourceCode/PySitemap/main.py --url="http://makonin.com/"
+echo "*** BUILD NEW SITEMAP:"
+cd ~/SourceCode/ScholarHacks/
+python3 ~/SourceCode/PySitemap/main.py --url="http://makonin.com/"
+mv -v sitemap.xml ~/SourceCode/smakonin.github.io/
 
 echo "*** PUSH WEBSITE UPDATES:"
+cd ~/SourceCode/smakonin.github.io/
 git add .
 git status
 git commit -m 'upd citation json'
 git push
 #git push > /dev/null
 
-head scholar.js
-cd ../ScholarHacks/
+cd ~
+head ~/SourceCode/smakonin.github.io/scholar.js

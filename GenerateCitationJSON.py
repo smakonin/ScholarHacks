@@ -11,6 +11,6 @@ from GoogleScholar import get_scholar_json
 
 json = get_scholar_json('cneuo_UAAAAJ')
 
-f = open('../smakonin.github.io/scholar.js', 'w')
+f = open('scholar.js', 'w')
 f.write(json)
 f.close()
