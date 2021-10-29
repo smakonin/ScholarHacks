@@ -13,10 +13,10 @@ echo "*** UPDATE WITH NEW CV:"
 cd ~/SourceCode/ScholarHacks/
 cp -v SMakonin_CV.pdf ~/SourceCode/smakonin.github.io/doc/
 
-echo "*** BUILD NEW SITEMAP:"
-cd ~/SourceCode/ScholarHacks/
-python3 ~/SourceCode/PySitemap/main.py --url="http://makonin.com/"
-mv -v sitemap.xml ~/SourceCode/smakonin.github.io/
+#echo "*** BUILD NEW SITEMAP:"
+#cd ~/SourceCode/ScholarHacks/
+#python3 PySitemap/main.py --url="http://makonin.com/"
+#mv -v sitemap.xml ~/SourceCode/smakonin.github.io/
 
 echo "*** PUSH WEBSITE UPDATES:"
 cd ~/SourceCode/smakonin.github.io/
