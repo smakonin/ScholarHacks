@@ -1,5 +1,3 @@
-head ~/SourceCode/smakonin.github.io/scholar.js
-
 echo "*** SYNC WITH GITHUB:"
 cd ~/SourceCode/smakonin.github.io/
 git pull
@@ -15,7 +13,5 @@ git add .
 git status
 git commit -m 'upd sitemap json'
 git push
-#git push > /dev/null
 
 cd ~
-head ~/SourceCode/smakonin.github.io/scholar.js
