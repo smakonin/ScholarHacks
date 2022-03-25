@@ -9,19 +9,20 @@ from pprint import pprint
 from dataclasses import dataclass, asdict, astuple
 
 
-journals = [['Transactions on Smart Grid'             , 'TSG'    , 10.486],
-            ['Pervasive Computing'                    , 'PvC'    ,  3.022],
-            ['Energy Efficiency'                      , 'ENEF'   ,  1.961],
-            ['Journal on Computing'                   , 'JoC'    ,  'tbd'],
-            ['Scientific Data'                        , 'SData'  ,  6.776],
-            ['Applied Energy'                         , 'APEN'   ,  8.426],
-            ['Data in Brief'                          , 'DIB'    ,  1.430],
-            ['Transactions on Circuits and Systems II', 'TCAS-II',  3.250],
-            ['MDPI Data'                              , 'DATA'   ,  'tbd'],
-            ['IEEE Access'                            , 'Access' ,  4.098],
-            ['Transactions on Power Systems'          , 'TPWRS'  ,  6.047],
-            ['Transactions on Sustainable Energy'     , 'TSTE'   ,  7.440],
-            ['Energy Informatics'                     , 'EINF'   ,  'tbd']]
+journals = [['IEEE Transactions on Smart Grid'             , 'TSG'    ,  8.960],
+            ['IEEE Pervasive Computing'                    , 'PvC'    ,  3.175],
+            ['Energy Efficiency'                           , 'ENEF'   ,  2.574],
+            ['Journal on Computing'                        , 'JoC'    ,  'tbd'],
+            ['Scientific Data'                             , 'SData'  ,  6.444],
+            ['Applied Energy'                              , 'APEN'   ,  9.746],
+            ['Data in Brief'                               , 'DIB'    ,  1.133],
+            ['IEEE Transactions on Circuits and Systems II', 'TCAS-II',  3.292],
+            ['MDPI Data'                                   , 'DATA'   ,  3.500],
+            ['IEEE Access'                                 , 'Access' ,  3.367],
+            ['IEEE Transactions on Power Systems'          , 'TPWRS'  ,  6.663],
+            ['IEEE Transactions on Sustainable Energy'     , 'TSTE'   ,  7.917],
+            ['IEEE Open Access Journal of Power and Energy', 'OAJPE'  ,  'tbd'],
+            ['Energy Informatics'                          , 'EINF'   ,  'tbd']]
 
 books =    ['Sams Publishing',
             'Woodhead Publishing']
