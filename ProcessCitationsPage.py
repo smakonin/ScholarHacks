@@ -64,11 +64,11 @@ conf_papers = len(papers) - (journal_papers + book_count)
 total_papers = conf_papers + journal_papers + book_count
 total_citations = conf_citations + journal_citations + book_citations
 
-print(print_templ % ('Peer-Reviewed Conferences:                                  ' + format(conf_papers, '3d') + ' papers', format(conf_citations, ',d'), ''))
-print(print_templ % ('Peer-Reviewed Journals:                                     ' + format(journal_papers, '3d') + ' papers', format(journal_citations, ',d'), format(impact_total, '10.3f')))
-print(print_templ % ('Books Co-authored/Co-edited:                                ' + format(book_count, '3d') + ' books', format(book_citations, ',d'), ''))
-print(print_templ % ((' ' * (title_len - 10)) + ('-' * 10), '-' * 9, '-' * 10))
-print(print_templ % ('Grand Totals:                                               ' + format(total_papers, '3d') + ' papers', format(total_citations, ',d'), format(impact_total, '10.3f')))
-print(print_templ % ((' ' * (title_len - 10)) + ('=' * 10), '=' * 9, '=' * 10))
+print(print_templ % ('Peer-Reviewed Conferences:                                ' + format(conf_papers, '3d') + ' papers', format(conf_citations, ',d'), ''))
+print(print_templ % ('Peer-Reviewed Journals:                                   ' + format(journal_papers, '3d') + ' articles', format(journal_citations, ',d'), format(impact_total, '10.3f')))
+print(print_templ % ('Books Co-authored/Co-edited:                              ' + format(book_count, '3d') + ' books', format(book_citations, ',d'), ''))
+print(print_templ % ((' ' * (title_len - 12)) + ('-' * 12), '-' * 9, '-' * 10))
+print(print_templ % ('Grand Totals:                                             ' + format(total_papers, '3d') + ' works', format(total_citations, ',d'), format(impact_total, '10.3f')))
+print(print_templ % ((' ' * (title_len - 12)) + ('=' * 12), '=' * 9, '=' * 10))
 
 print()

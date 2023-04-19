@@ -15,14 +15,16 @@ journals = [['IEEE Transactions on Smart Grid'             , 'TSG'    ,  8.960],
             ['Journal on Computing'                        , 'JoC'    ,  'tbd'],
             ['Scientific Data'                             , 'SData'  ,  6.444],
             ['Applied Energy'                              , 'APEN'   ,  9.746],
-            ['Data in Brief'                               , 'DIB'    ,  1.133],
+            ['Data in Brief'                               , 'DIB'    ,  1.700],
+            ['MethodsX'                                    , 'MEX'    ,  1.800],
             ['IEEE Transactions on Circuits and Systems II', 'TCAS-II',  3.292],
             ['MDPI Data'                                   , 'DATA'   ,  3.500],
             ['IEEE Access'                                 , 'Access' ,  3.367],
             ['IEEE Transactions on Power Systems'          , 'TPWRS'  ,  6.663],
             ['IEEE Transactions on Sustainable Energy'     , 'TSTE'   ,  7.917],
-            ['IEEE Open Access Journal of Power and Energy', 'OAJPE'  ,  'tbd'],
-            ['Energy Informatics'                          , 'EINF'   ,  'tbd']]
+            ['IEEE Open Access Journal of Power and Energy', 'OAJPE'  ,  2.900],
+            ['Buildings'                                   , 'BUILD'  ,  3.324],
+            ['Energy Informatics'                          , 'EINF'   ,  2.820]]
 
 books =    ['Sams Publishing',
             'Woodhead Publishing']
